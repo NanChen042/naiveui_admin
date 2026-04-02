@@ -1,32 +1,35 @@
 <template>
-  <div class="w-full h-full flex flex-col bg-white dark:bg-[#18181c] rounded-lg shadow-sm border border-gray-100 dark:border-gray-800 transition-colors duration-300">
-    <div v-if="showToolbar" class="flex justify-between items-center px-5 py-4 border-b border-gray-50 dark:border-gray-800">
-      <div class="text-base font-semibold text-gray-800 dark:text-white/90">
-        <slot name="title">{{ title }}</slot>
-      </div>
+  <n-card class="h-full flex flex-col pro-table-card" :bordered="true" content-class="flex-1 overflow-hidden p-0 flex flex-col">
+    <!-- 标题与工具栏 -->
+    <template #header v-if="showToolbar">
+      <slot name="title">{{ title }}</slot>
+    </template>
+    
+    <template #header-extra v-if="showToolbar">
       <div class="flex gap-2">
         <slot name="toolbar">
           <n-button v-if="showCreate" type="primary" size="small" @click="$emit('create')">添加记录</n-button>
           <n-button size="small" @click="refresh">刷新</n-button>
         </slot>
       </div>
-    </div>
+    </template>
 
-    <div class="flex-1 p-5 overflow-hidden">
-      <n-data-table
-        :columns="columns"
-        :data="data"
-        :loading="loading"
-        :pagination="paginationConfig"
-        :remote="true"
-        @update:page="handlePageChange"
-        @update:page-size="handlePageSizeChange"
-        :scroll-x="scrollX"
-        :max-height="fixedHeader ? 'calc(100vh - 280px)' : undefined"
-        class="h-full"
+    <!-- 表格内容 -->
+    <div class="flex-1 p-5 overflow-hidden h-full">
+      <n-data-table 
+        :columns="columns" 
+        :data="data" 
+        :loading="loading" 
+        :pagination="paginationConfig" 
+        :remote="true" 
+        @update:page="handlePageChange" 
+        @update:page-size="handlePageSizeChange" 
+        :scroll-x="scrollX" 
+        :max-height="fixedHeader ? 'calc(100vh - 280px)' : undefined" 
+        class="h-full" 
       />
     </div>
-  </div>
+  </n-card>
 </template>
 
 <script setup lang="ts">

@@ -1,1 +1,69 @@
 @import './base.css';
+
+/* 页面过渡动画 */
+
+/* 淡显 (Fade) */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* 左右滑动 (Fade Slide) - 标准左右滑动，从右向左进，从左向右出 */
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateX(30px);
+}
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+/* 缩放 (Zoom Fade) */
+.zoom-fade-enter-active,
+.zoom-fade-leave-active {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.zoom-fade-enter-from {
+  opacity: 0;
+  transform: scale(0.95);
+}
+.zoom-fade-leave-to {
+  opacity: 0;
+  transform: scale(1.05);
+}
+
+/* 左淡显 (Fade Left) - 向左滑动进入 (从右 30px 到 0) */
+.fade-left-enter-active,
+.fade-left-leave-active {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-left-enter-from {
+  opacity: 0;
+  transform: translateX(30px);
+}
+.fade-left-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+/* 右淡显 (Fade Right) - 向右滑动进入 (从左 -30px 到 0) */
+.fade-right-enter-active,
+.fade-right-leave-active {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-right-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.fade-right-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}

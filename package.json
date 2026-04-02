@@ -16,6 +16,7 @@
     "@vicons/ionicons4": "^0.13.0",
     "@vicons/ionicons5": "^0.13.0",
     "axios": "^1.14.0",
+    "echarts": "^6.0.0",
     "pinia": "^3.0.4",
     "tailwindcss": "^4.2.2",
     "unplugin-vue-components": "^32.0.0",
