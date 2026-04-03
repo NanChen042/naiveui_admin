@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { storage } from '@/utils/storage'
+import { login as loginApi, logout as logoutApi } from '@/api/auth'
 
 export type Role = 'admin' | 'user'
 
@@ -22,29 +23,34 @@ export const useUserStore = defineStore('user', {
   },
   actions: {
     async login(username: string) {
-      // 模拟模拟后端返回的真实 Token 与用户信息
-      const role: Role = username === 'admin' ? 'admin' : 'user'
-      const name = username === 'admin' ? 'Administrator' : 'General User'
-      const avatar = 'https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg'
-      const token = `fake-jwt-token-${Math.random().toString(36).substring(7)}`
+      try {
+        const data = await loginApi({ username, password: '123456' })
+        const { role, token, avatar, username: name } = data
 
-      this.role = role
-      this.username = name
-      this.avatar = avatar
-      this.token = token
+        this.role = role as Role
+        this.username = name
+        this.avatar = avatar
+        this.token = token
 
-      storage.set('user_role', role)
-      storage.set('user_name', name)
-      storage.set('user_avatar', avatar)
-      storage.set('user_token', token)
+        storage.set('user_role', role)
+        storage.set('user_name', name)
+        storage.set('user_avatar', avatar)
+        storage.set('user_token', token)
+      } catch (error) {
+        return Promise.reject(error)
+      }
     },
-    logout() {
-      this.$reset()
-      storage.remove('user_role')
-      storage.remove('user_name')
-      storage.remove('user_avatar')
-      storage.remove('user_token')
-      location.href = '/login'
+    async logout() {
+      try {
+        await logoutApi()
+      } finally {
+        this.$reset()
+        storage.remove('user_role')
+        storage.remove('user_name')
+        storage.remove('user_avatar')
+        storage.remove('user_token')
+        location.href = '/login'
+      }
     }
   }
 })

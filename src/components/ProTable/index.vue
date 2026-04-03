@@ -4,7 +4,7 @@
     <template #header v-if="showToolbar">
       <slot name="title">{{ title }}</slot>
     </template>
-    
+
     <template #header-extra v-if="showToolbar">
       <div class="flex gap-2">
         <slot name="toolbar">
@@ -16,18 +16,7 @@
 
     <!-- 表格内容 -->
     <div class="flex-1 p-5 overflow-hidden h-full">
-      <n-data-table 
-        :columns="columns" 
-        :data="data" 
-        :loading="loading" 
-        :pagination="paginationConfig" 
-        :remote="true" 
-        @update:page="handlePageChange" 
-        @update:page-size="handlePageSizeChange" 
-        :scroll-x="scrollX" 
-        :max-height="fixedHeader ? 'calc(100vh - 280px)' : undefined" 
-        class="h-full" 
-      />
+      <n-data-table :columns="columns" :data="data" :loading="loading" :pagination="paginationConfig" :remote="true" @update:page="handlePageChange" @update:page-size="handlePageSizeChange" :scroll-x="scrollX" :max-height="fixedHeader ? 'calc(100vh - 280px)' : undefined" class="h-full" />
     </div>
   </n-card>
 </template>

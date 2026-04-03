@@ -39,7 +39,7 @@ service.interceptors.response.use(
       window.$message?.error(res.message || 'Error')
       return Promise.reject(new Error(res.message || 'Error'))
     }
-    return res
+    return res.data
   },
   (error) => {
     window.$message?.error(error.message || '网络错误')

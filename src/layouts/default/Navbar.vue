@@ -25,7 +25,7 @@
             <SearchOutline />
           </n-icon>
         </template>
-        搜索
+        {{ $t('navbar.search') }}
       </n-tooltip>
 
       <n-tooltip trigger="hover">
@@ -39,8 +39,17 @@
             </template>
           </n-icon>
         </template>
-        {{ appStore.isFullScreen ? '退出全屏' : '全屏' }}
+        {{ appStore.isFullScreen ? $t('navbar.exitFullscreen') : $t('navbar.fullscreen') }}
       </n-tooltip>
+
+      <!-- 语言切换 -->
+      <n-dropdown :options="languageOptions" @select="handleLanguageChange" placement="bottom-end" trigger="hover">
+        <div class="flex items-center justify-center tool-icon" :style="iconStyle">
+          <n-icon size="20">
+            <LanguageOutline />
+          </n-icon>
+        </div>
+      </n-dropdown>
 
       <!-- 主题切换：三态下拉菜单 -->
       <n-dropdown :options="themeOptions" @select="handleThemeChange" placement="bottom-end" trigger="hover">
@@ -70,7 +79,7 @@
             </n-icon>
           </div>
         </template>
-        退出登录
+        {{ $t('navbar.logout') }}
       </n-tooltip>
     </div>
   </div>
@@ -90,9 +99,11 @@ import {
   ContractOutline,
   SettingsOutline,
   DesktopOutline,
-  CheckmarkOutline
+  CheckmarkOutline,
+  LanguageOutline
 } from '@vicons/ionicons5'
-import { useAppStore, type ThemeMode } from '@/store/modules/app'
+import { useAppStore, type ThemeMode, type Language } from '@/store/modules/app'
+import { useI18n } from 'vue-i18n'
 import { useMenu } from '@/hooks/useMenu'
 import { config } from '@/config'
 import Breadcrumb from './Breadcrumb.vue'
@@ -100,6 +111,7 @@ import Breadcrumb from './Breadcrumb.vue'
 const router = useRouter()
 const route = useRoute()
 const appStore = useAppStore()
+const { t } = useI18n()
 const { menuOptions } = useMenu()
 
 const activeKey = ref<string | null>(route.path)
@@ -114,25 +126,39 @@ const renderIcon = (icon: Component, color?: string) => {
   return () => h(NIcon, { color }, { default: () => h(icon) })
 }
 
-// 主题切换选项 (响应式计算，包含状态勾选)
+// 主题切换选项
 const themeOptions = computed<DropdownOption[]>(() => [
   {
-    label: '浅色模式',
+    label: t('navbar.theme.light'),
     key: 'light',
     icon: renderIcon(SunnyOutline),
     extra: appStore.themeMode === 'light' ? () => h(NIcon, { color: appStore.themeColor }, { default: () => h(CheckmarkOutline) }) : undefined
   },
   {
-    label: '深色模式',
+    label: t('navbar.theme.dark'),
     key: 'dark',
     icon: renderIcon(MoonOutline),
     extra: appStore.themeMode === 'dark' ? () => h(NIcon, { color: appStore.themeColor }, { default: () => h(CheckmarkOutline) }) : undefined
   },
   {
-    label: '跟随系统',
+    label: t('navbar.theme.auto'),
     key: 'auto',
     icon: renderIcon(DesktopOutline),
     extra: appStore.themeMode === 'auto' ? () => h(NIcon, { color: appStore.themeColor }, { default: () => h(CheckmarkOutline) }) : undefined
+  }
+])
+
+// 语言切换选项
+const languageOptions = computed<DropdownOption[]>(() => [
+  {
+    label: '简体中文',
+    key: 'zh-CN',
+    extra: appStore.language === 'zh-CN' ? () => h(NIcon, { color: appStore.themeColor }, { default: () => h(CheckmarkOutline) }) : undefined
+  },
+  {
+    label: 'English',
+    key: 'en-US',
+    extra: appStore.language === 'en-US' ? () => h(NIcon, { color: appStore.themeColor }, { default: () => h(CheckmarkOutline) }) : undefined
   }
 ])
 
@@ -146,6 +172,10 @@ const handleThemeChange = (key: string) => {
   appStore.setThemeMode(key as ThemeMode)
 }
 
+const handleLanguageChange = (key: string) => {
+  appStore.setLanguage(key as Language)
+}
+
 const handleMenuClick = (key: string) => {
   router.push(key)
 }
@@ -153,10 +183,10 @@ const handleMenuClick = (key: string) => {
 // 退出登录二次确认
 const handleLogoutConfirm = () => {
   window.$dialog?.warning({
-    title: '提示',
-    content: '您确定要退出登录吗？',
-    positiveText: '确定',
-    negativeText: '取消',
+    title: t('navbar.tip'),
+    content: t('navbar.logoutConfirm'),
+    positiveText: t('common.ok'),
+    negativeText: t('common.cancel'),
     onPositiveClick: () => {
       router.push('/login')
     }

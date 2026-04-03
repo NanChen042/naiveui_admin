@@ -7,8 +7,6 @@ import {
   NDialogProvider, 
   NGlobalStyle, 
   NThemeEditor,
-  zhCN,
-  dateZhCN,
   useMessage, 
   useLoadingBar, 
   useDialog 
@@ -120,8 +118,8 @@ const GlobalProviderApi = defineComponent({
   <n-config-provider 
     :theme="appStore.activeTheme" 
     :theme-overrides="themeOverrides" 
-    :locale="zhCN"
-    :date-locale="dateZhCN"
+    :locale="appStore.locale"
+    :date-locale="appStore.dateLocale"
     class="h-full w-full"
   >
     <n-global-style />

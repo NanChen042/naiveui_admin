@@ -1,0 +1,31 @@
+{
+  "navbar": {
+    "search": "Search",
+    "fullscreen": "Fullscreen",
+    "exitFullscreen": "Exit Fullscreen",
+    "theme": {
+      "light": "Light Mode",
+      "dark": "Dark Mode",
+      "auto": "Auto (System)"
+    },
+    "language": "Switch Language",
+    "logout": "Logout",
+    "logoutConfirm": "Are you sure you want to logout?",
+    "tip": "Tip"
+  },
+  "settings": {
+    "title": "System Settings",
+    "themeColor": "Theme Color",
+    "navMode": "Navigation Mode",
+    "siderMode": "Sider Mode",
+    "topMode": "Top Mode",
+    "layout": "Layout Related",
+    "showWatermark": "Show Watermark",
+    "watermarkConfig": "Modify Watermark"
+  },
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "apply": "Apply"
+  }
+}
