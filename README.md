@@ -1159,3 +1159,11 @@ npm run build
 CSS 样式 → src/assets/
 全局配置 → src/config/
 ```
+
+今日（2026-04-03）提交 e9443a7 的主要改动：
+
+Mock 服务 - 引入 msw / vite-mock，新增 mock/auth.ts、mock/dashboard.ts、mock/user.ts
+国际化（i18n） - 集成 vue-i18n，Navbar 支持中英文切换，新增 zh-CN.json / en-US.json
+路由守卫重构 - next() 回调改为 return 值方式
+TagsView 重构 - 多页签管理完整实现
+Navbar 增强 - 语言切换下拉、图标修复（LanguageOutline 替代 LanguagesOutline）
