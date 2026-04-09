@@ -75,7 +75,6 @@ onMounted(() => {
     <div class="login-card-container animate-fade-in">
       <div class="login-content">
         <div class="login-brand">
-          <div class="brand-logo">A</div>
           <n-gradient-text type="primary" :size="28" weight="800">
             Vue Naive Admin
           </n-gradient-text>
@@ -184,21 +183,7 @@ onMounted(() => {
 
 .login-brand {
   text-align: center;
-  
-  .brand-logo {
-    width: 56px;
-    height: 56px;
-    background: var(--n-color-primary, #18a058);
-    color: white;
-    font-size: 28px;
-    font-weight: 900;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    box-shadow: 0 4px 12px rgba(24, 160, 88, 0.3);
-  }
+
 }
 
 .captcha-img-box {

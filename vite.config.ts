@@ -17,6 +17,7 @@ import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/naiveui_admin/',
   plugins: [
     vue(),
     vueDevTools(),
