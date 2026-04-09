@@ -1,0 +1,1 @@
+import{h as e}from"./light-gcvVC2vE.js";var t=!1;function n(){if(e&&window.CSS&&!t&&(t=!0,`registerProperty`in(window==null?void 0:window.CSS)))try{CSS.registerProperty({name:`--n-color-start`,syntax:`<color>`,inherits:!1,initialValue:`#0000`}),CSS.registerProperty({name:`--n-color-end`,syntax:`<color>`,inherits:!1,initialValue:`#0000`})}catch{}}export{n as t};

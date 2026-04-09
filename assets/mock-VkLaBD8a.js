@@ -1,0 +1,1 @@
+import{t as e}from"./mock-ZZzdp3es.js";export default e();
