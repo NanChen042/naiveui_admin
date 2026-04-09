@@ -141,6 +141,14 @@ export const useAppStore = defineStore('app', {
       this.themeColor = color
       storage.set('theme_color', color)
     },
+    toggleTheme() {
+      const modeMap: Record<ThemeMode, ThemeMode> = {
+        light: 'dark',
+        dark: 'light',
+        auto: this.systemDark ? 'light' : 'dark'
+      }
+      this.setThemeMode(modeMap[this.themeMode])
+    },
     setUI(storageKey: string, value: any) {
       // 改进属性映射逻辑，直接支持驼峰或下划线转驼峰
       let stateKey = storageKey

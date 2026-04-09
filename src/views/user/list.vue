@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { h } from 'vue'
-import { NButton, NTag, NSpace, useMessage } from 'naive-ui'
+import { NButton, NTag, NSpace, useMessage, type DataTableColumns } from 'naive-ui'
 import ProTable from '@/components/ProTable/index.vue'
 import { getUserList } from '@/api/user'
 
@@ -22,7 +22,7 @@ const handleCreate = () => message.success('打开新增弹窗')
 const handleEdit = (r: any) => message.info(`编辑: ${r.name}`)
 const handleDelete = (r: any) => message.warning(`清退: ${r.id}`)
 
-const columns = [
+const columns: DataTableColumns = [
   { title: '# UID', key: 'id', width: 80, fixed: 'left' as const, align: 'center' },
   { title: '账户名', key: 'name', width: 180 },
   { 

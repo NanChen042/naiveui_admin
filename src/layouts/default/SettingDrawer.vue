@@ -1,7 +1,7 @@
 <template>
   <n-drawer v-model:show="showDrawer" :width="350">
     <n-drawer-content title="系统设定" closable>
-      <template #header-extra>
+      <template #extra>
         <n-button quaternary circle size="small" @click="appStore.reloadPage">
           <template #icon>
             <n-icon>
