@@ -1,14 +1,17 @@
 <template>
   <n-drawer v-model:show="showDrawer" :width="350">
-    <n-drawer-content title="系统设定" closable>
-      <template #header-extra>
-        <n-button quaternary circle size="small" @click="appStore.reloadPage">
-          <template #icon>
-            <n-icon>
-              <RefreshOutline />
-            </n-icon>
-          </template>
-        </n-button>
+    <n-drawer-content closable>
+      <template #header>
+        <div class="flex justify-between items-center w-full pr-10">
+          <span>系统设定</span>
+          <n-button quaternary circle size="small" @click="appStore.reloadPage">
+            <template #icon>
+              <n-icon>
+                <RefreshOutline />
+              </n-icon>
+            </template>
+          </n-button>
+        </div>
       </template>
 
       <div class="flex flex-col gap-6 pb-10">

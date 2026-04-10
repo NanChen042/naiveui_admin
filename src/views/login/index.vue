@@ -52,10 +52,10 @@ const handleLogin = async () => {
           refreshCaptcha()
           return
         }
-        
+
         await userStore.login(model.username)
         message.success('登录成功，欢迎回来')
-        
+
         const redirect = route.query.redirect as string
         router.push(redirect || '/')
       } finally {
@@ -75,7 +75,6 @@ onMounted(() => {
     <div class="login-card-container animate-fade-in">
       <div class="login-content">
         <div class="login-brand">
-          <div class="brand-logo">A</div>
           <n-gradient-text type="primary" :size="28" weight="800">
             Vue Naive Admin
           </n-gradient-text>
@@ -84,14 +83,7 @@ onMounted(() => {
           </div>
         </div>
 
-        <n-form
-          ref="formRef"
-          :model="model"
-          :rules="rules"
-          label-placement="top"
-          size="large"
-          class="mt-8"
-        >
+        <n-form ref="formRef" :model="model" :rules="rules" label-placement="top" size="large" class="mt-8">
           <n-form-item path="username" label="用户名">
             <n-input v-model:value="model.username" placeholder="admin / user">
               <template #prefix>
@@ -100,13 +92,7 @@ onMounted(() => {
             </n-input>
           </n-form-item>
           <n-form-item path="password" label="密码">
-            <n-input
-              v-model:value="model.password"
-              type="password"
-              show-password-on="mousedown"
-              placeholder="123456"
-              @keypress.enter="handleLogin"
-            >
+            <n-input v-model:value="model.password" type="password" show-password-on="mousedown" placeholder="123456" @keypress.enter="handleLogin">
               <template #prefix>
                 <n-icon :component="LockClosedOutline" />
               </template>
@@ -127,15 +113,7 @@ onMounted(() => {
           </n-form-item>
 
           <div class="mt-6">
-            <n-button
-              type="primary"
-              block
-              size="large"
-              :loading="loading"
-              attr-type="submit"
-              @click="handleLogin"
-              style="border-radius: 8px;"
-            >
+            <n-button type="primary" block size="large" :loading="loading" attr-type="submit" @click="handleLogin" style="border-radius: 8px;">
               立即进入系统
             </n-button>
           </div>
@@ -158,7 +136,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   position: relative;
-  
+
   // 注入轻微的装饰感，但保持干净
   &::before {
     content: '';
@@ -168,7 +146,7 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     background: radial-gradient(circle at 10% 20%, rgba(24, 144, 255, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(24, 144, 255, 0.05) 0%, transparent 40%);
+      radial-gradient(circle at 90% 80%, rgba(24, 144, 255, 0.05) 0%, transparent 40%);
   }
 }
 
@@ -184,21 +162,7 @@ onMounted(() => {
 
 .login-brand {
   text-align: center;
-  
-  .brand-logo {
-    width: 56px;
-    height: 56px;
-    background: var(--n-color-primary, #18a058);
-    color: white;
-    font-size: 28px;
-    font-weight: 900;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    box-shadow: 0 4px 12px rgba(24, 160, 88, 0.3);
-  }
+
 }
 
 .captcha-img-box {
@@ -208,7 +172,7 @@ onMounted(() => {
   overflow: hidden;
   border-radius: 4px;
   transition: opacity 0.2s;
-  
+
   &:hover {
     opacity: 0.8;
   }
@@ -219,8 +183,15 @@ onMounted(() => {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .login-page-footer {
@@ -232,8 +203,12 @@ onMounted(() => {
 :deep(.dark) {
   .login-page {
     background-color: #000;
-    &::before { opacity: 0.1; }
+
+    &::before {
+      opacity: 0.1;
+    }
   }
+
   .login-card-container {
     background-color: #18181c;
     box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.02);
